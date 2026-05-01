@@ -1,0 +1,581 @@
+.site-landing {
+  color-scheme: light;
+  /* Body: DM Sans. Headlines: Lexend — clear, neutral, regulated-sector appropriate. */
+  --font-body: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Lexend', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-body);
+  /* Lock readable body tone; overrides :root prefers-color-scheme text */
+  color: #475569;
+  background-color: #fff;
+  --brand-navy: #051c2c;
+  --brand-navy-deep: #031219;
+  --brand-navy-hover: #0a3048;
+  --brand-navy-mid: #0d3a52;
+  --brand-steel: #1a4f6d;
+  --brand-silver: #d1d9e0;
+  --brand-silver-line: #c5ccd4;
+  --brand-silver-muted: #8a9aa8;
+  --brand-surface: #eef1f5;
+}
+
+/* ─── Professional headline system (Lexend) ─── */
+.site-landing h1,
+.site-landing h2,
+.site-landing h3 {
+  font-family: var(--font-heading);
+  font-feature-settings:
+    'kern' 1,
+    'liga' 1;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.site-landing h1 {
+  line-height: 1.08;
+  letter-spacing: -0.042em;
+  font-weight: 600;
+}
+
+.site-landing h2 {
+  line-height: 1.14;
+  letter-spacing: -0.032em;
+}
+
+.site-landing h3 {
+  line-height: 1.26;
+  letter-spacing: -0.026em;
+  font-weight: 600;
+}
+
+/* Hero headline */
+.site-landing .hero-heading {
+  font-size: clamp(1.875rem, 3.5vw + 1.05rem, 3rem);
+  font-weight: 600;
+}
+
+/* Primary section titles (About, Services, Steps, FAQ, etc.) */
+.site-landing .heading-section {
+  font-size: clamp(1.6875rem, 2.2vw + 1rem, 2.375rem);
+  font-weight: 600;
+  letter-spacing: -0.034em;
+  line-height: 1.12;
+}
+
+/* Card / service titles */
+.site-landing .heading-card {
+  font-size: clamp(1.1875rem, 0.45vw + 1.05rem, 1.375rem);
+  font-weight: 600;
+  letter-spacing: -0.022em;
+  line-height: 1.32;
+}
+
+/* Step titles */
+.site-landing .heading-step {
+  font-size: clamp(1.125rem, 0.35vw + 1.02rem, 1.3125rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Mid-page callout */
+.site-landing .heading-callout {
+  font-size: clamp(1.625rem, 2vw + 1rem, 2.125rem);
+  font-weight: 600;
+  letter-spacing: -0.032em;
+  line-height: 1.15;
+}
+
+/* Form panel title */
+.site-landing .heading-form {
+  font-size: clamp(1.125rem, 0.9vw + 0.95rem, 1.375rem);
+  font-weight: 600;
+  letter-spacing: -0.024em;
+  line-height: 1.28;
+}
+
+/* Thank-you */
+.site-landing .heading-thanks {
+  font-size: clamp(1.5rem, 1.6vw + 1rem, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+/* Small caps rows above section titles */
+.site-landing .heading-eyebrow {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+}
+
+/* FAQ questions — same family, tuned for long lines */
+.site-landing .faq-section .faq-topic {
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 0.35vw + 0.93rem, 1.1875rem);
+  font-weight: 600;
+  letter-spacing: -0.022em;
+  line-height: 1.32;
+  color: #0f172a;
+}
+
+/* Trust-strip numbers */
+.site-landing .topic-stat-lead {
+  font-family: var(--font-heading);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+.input-field:focus {
+  outline: 2px solid var(--brand-navy);
+  outline-offset: 1px;
+  border-color: var(--brand-silver-muted);
+}
+
+/* Modern native select — custom chevron, soft surface (contact form / modal) */
+.site-landing select.select-modern {
+  display: block;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin: 0;
+  padding: 0.7rem 2.875rem 0.72rem 1rem;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.45;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--brand-navy-deep);
+  background-color: #f8fafc;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='%23051c2c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.125rem;
+  border: 1px solid rgb(203 213 225 / 0.95);
+  border-radius: 0.75rem;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.85),
+    0 1px 3px rgb(5 28 44 / 0.06);
+  cursor: pointer;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.site-landing select.select-modern::-ms-expand {
+  display: none;
+}
+
+.site-landing select.select-modern:hover {
+  border-color: rgb(148 163 184 / 0.9);
+  background-color: #fff;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 1),
+    0 2px 8px rgb(5 28 44 / 0.07);
+}
+
+.site-landing select.select-modern:focus {
+  outline: none;
+  border-color: var(--brand-navy);
+  background-color: #fff;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 1),
+    0 0 0 3px rgb(5 28 44 / 0.15);
+}
+
+.site-landing select.select-modern:active {
+  box-shadow:
+    inset 0 1px 3px rgb(5 28 44 / 0.06),
+    0 0 0 3px rgb(5 28 44 / 0.12);
+}
+
+.site-landing select.select-modern.select-modern-placeholder:not(:focus) {
+  color: rgb(100 116 139);
+}
+
+/* Placeholder-first option styling (limited browser support — color still aids hint) */
+.site-landing select.select-modern option[value=''] {
+  color: rgb(100 116 139);
+}
+
+.site-landing select.select-modern option {
+  font-weight: 500;
+  color: var(--brand-navy-deep);
+  padding: 0.5rem;
+}
+
+.contact-form-card {
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 0.08),
+    0 12px 24px -4px rgb(5 28 44 / 0.14);
+}
+
+/* Hero uses text-white; global h2 uses var(--text-h) — both can wash out this title on dark mode.
+   Reset form typography so headings and labels stay readable on the white card. */
+.site-landing .contact-form-card,
+.site-landing .modal-form-inner {
+  color: #334155;
+}
+
+.site-landing .contact-form-card h2,
+.site-landing .modal-form-inner h2 {
+  color: var(--brand-navy);
+  font-weight: 600;
+}
+
+.site-landing .contact-form-card label span,
+.site-landing .modal-form-inner label span {
+  color: #334155;
+  font-weight: 600;
+}
+
+.site-landing .contact-form-card .input-field,
+.site-landing .modal-form-inner .input-field {
+  color: var(--brand-navy-deep);
+  background-color: #fff;
+}
+
+/* Hero: headings must stay light on photo overlay (inherits no longer ruined by global h1) */
+.site-landing .hero-section-content h1 {
+  color: #ffffff;
+}
+
+.site-landing .faq-section .faq-panel-inner p {
+  color: #475569;
+}
+
+.site-landing .thank-you-card {
+  color: #334155;
+}
+
+.site-landing .thank-you-card h1 {
+  color: var(--brand-navy);
+  font-weight: 600;
+}
+
+.site-landing .thank-you-card p {
+  color: #475569;
+}
+
+/* Full-bleed photo + brand overlay (--hero-bg-image set inline from App.jsx) */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: var(--hero-bg-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: scale(1.03);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-section::before {
+    transform: none;
+  }
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      105deg,
+      rgb(5 28 44 / 0.94) 0%,
+      rgb(5 28 44 / 0.88) 42%,
+      rgb(5 28 44 / 0.78) 100%
+    ),
+    radial-gradient(ellipse 90% 70% at 90% 15%, rgb(209 217 224 / 0.06), transparent 50%);
+}
+
+.hero-section-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Hero benefit list — circular metallic tick (silver ring + soft plate + check) */
+.hero-benefit-tick {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 1.625rem;
+  height: 1.625rem;
+  margin-top: 0.1rem;
+  color: rgb(237 246 251);
+}
+
+@media (min-width: 640px) {
+  .hero-benefit-tick {
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-top: 0.11rem;
+  }
+}
+
+.hero-benefit-tick-icon {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.hero-benefit-tick-plate {
+  stroke: none;
+}
+
+.hero-benefit-tick-ring {
+  fill: none;
+  stroke: rgb(220 229 237 / 0.65);
+  vector-effect: non-scaling-stroke;
+}
+
+.hero-benefit-tick-mark {
+  stroke: rgb(247 251 253);
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+.faq-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.28s ease;
+}
+
+.faq-panel-open {
+  grid-template-rows: 1fr;
+}
+
+.faq-panel-inner {
+  overflow: hidden;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.nav-link {
+  color: rgb(255 255 255 / 0.88);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: color 0.15s ease;
+}
+
+.nav-link:hover {
+  color: #fff;
+}
+
+.stat-card {
+  border: 1px solid var(--brand-silver-line);
+  background: linear-gradient(180deg, #fff 0%, #f4f7fa 100%);
+}
+
+.site-landing .services-section-intro {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.service-card {
+  border: 1px solid rgb(197 204 212 / 0.85);
+  background: #fff;
+  box-shadow: 0 1px 3px rgb(5 28 44 / 0.07);
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.service-card:hover {
+  box-shadow: 0 14px 32px -8px rgb(5 28 44 / 0.14);
+  transform: translateY(-2px);
+}
+
+.service-card-top {
+  border-top: 4px solid var(--brand-navy);
+}
+
+.step-card {
+  border: 1px solid var(--brand-silver-line);
+  background: #fff;
+  position: relative;
+}
+
+.step-num {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background: var(--brand-navy);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  border: 1px solid rgb(209 217 224 / 0.45);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.12),
+    0 4px 14px rgb(5 28 44 / 0.28);
+}
+
+.btn-brand {
+  background-color: var(--brand-navy);
+  color: #fff;
+}
+
+.btn-brand:hover {
+  background-color: var(--brand-navy-hover);
+}
+
+.btn-brand-outline {
+  border: 2px solid rgb(255 255 255 / 0.55);
+  color: #fff;
+  background: transparent;
+}
+
+.btn-brand-outline:hover {
+  background: rgb(255 255 255 / 0.1);
+}
+
+/* Service CTAs — four clear steps in the logo navy palette (scoped so base styles never strip bg) */
+.site-landing button.service-card-cta {
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+  appearance: none;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.12s ease;
+}
+
+.site-landing button.service-card-cta:hover {
+  box-shadow: 0 4px 14px rgb(5 28 44 / 0.22);
+}
+
+.site-landing button.service-card-cta:active {
+  transform: scale(0.99);
+}
+
+.site-landing button.service-card-cta:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px #fff,
+    0 0 0 4px var(--brand-navy);
+}
+
+.section-muted {
+  background-color: var(--brand-surface);
+}
+
+.text-brand {
+  color: var(--brand-navy);
+}
+
+.text-brand-muted {
+  color: var(--brand-silver-muted);
+}
+
+.text-hero-muted {
+  color: rgb(225 232 238 / 0.96);
+}
+
+.bg-brand-header {
+  background-color: var(--brand-navy);
+}
+
+.border-brand-line {
+  border-color: var(--brand-silver-line);
+}
+
+.thank-you-bg {
+  background: linear-gradient(180deg, var(--brand-surface) 0%, #fff 65%);
+}
+
+.modal-close-btn {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  border: 0;
+  border-radius: 9999px;
+  background-color: rgb(226 232 240);
+  color: var(--brand-navy-deep);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color 0.15s ease,
+    transform 0.12s ease;
+}
+
+.modal-close-btn:hover {
+  background-color: rgb(209 217 229);
+}
+
+.modal-close-btn:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px #fff,
+    0 0 0 4px var(--brand-navy);
+}
+
+.modal-close-btn:active {
+  transform: scale(0.95);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-close-btn:active {
+    transform: none;
+  }
+}
+
+.modal-panel {
+  animation: modal-in 0.22s ease-out;
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-panel {
+    animation: none;
+  }
+}
