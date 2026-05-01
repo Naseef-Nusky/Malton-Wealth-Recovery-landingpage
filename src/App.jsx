@@ -8,13 +8,6 @@ const PHONE_HREF = 'tel:08001234567'
 
 const HERO_BENEFIT_TICK_PLATE_FILL = 'hero-benefit-tick-plate-sheen'
 
-const TRUST_STATS = [
-  { value: '15+ years', label: 'Combined fraud recovery experience' },
-  { value: 'UK-wide', label: 'Support for victims across Britain' },
-  { value: 'Confidential', label: 'Strict discretion throughout' },
-  { value: 'Free review', label: 'No-obligation initial consultation' },
-]
-
 const SERVICES = [
   {
     iconId: 'investment',
@@ -449,23 +442,10 @@ function App() {
         </div>
       </section>
 
-      <section className="scroll-mt-28 border-y border-slate-200 bg-white px-4 py-10 sm:px-6">
-        <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {TRUST_STATS.map((s) => (
-            <div key={s.label} className="stat-card rounded-xl px-6 py-5 text-center">
-              <p className="topic-stat-lead text-brand mb-2 text-xl sm:text-2xl">{s.value}</p>
-              <p className="text-sm leading-snug text-slate-600">{s.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       <section id="about" className="scroll-mt-28 px-4 py-16 sm:px-6 lg:py-20">
-        <div className="mx-auto max-w-3xl">
-          <p className="text-brand-muted heading-eyebrow mb-3 text-center uppercase">
-            Who we are
-          </p>
-          <h2 className="text-brand heading-section mb-6 text-center">About Us</h2>
+        <div className="about-section-inner mx-auto max-w-3xl text-center text-balance">
+          <p className="text-brand-muted heading-eyebrow mb-3 uppercase">Who we are</p>
+          <h2 className="text-brand heading-section mb-6">About Us</h2>
           <p className="mb-4 leading-relaxed text-lg text-slate-600">
             With over 15 years of combined experience in fraud recovery, we support individuals across the UK who
             have lost significant sums to scams, including investment scams, cryptocurrency fraud, and online
@@ -473,8 +453,8 @@ function App() {
           </p>
           <p className="leading-relaxed text-lg text-slate-600">
             We understand how complex and distressing it can be to lose money to a scam. That is why our approach
-            focuses on discretion, professionalism, and helping you understand your options for recovering money
-            lost to fraud.
+            focuses on discretion, professionalism, and helping you understand your options for recovering money lost
+            to fraud.
           </p>
         </div>
       </section>

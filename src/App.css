@@ -121,14 +121,6 @@
   color: #0f172a;
 }
 
-/* Trust-strip numbers */
-.site-landing .topic-stat-lead {
-  font-family: var(--font-heading);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.03em;
-  font-weight: 700;
-}
-
 .input-field:focus {
   outline: 2px solid var(--brand-navy);
   outline-offset: 1px;
@@ -397,11 +389,6 @@
 .site-landing footer .footer-site-link:hover {
   text-decoration: underline;
   color: var(--brand-navy-hover);
-}
-
-.stat-card {
-  border: 1px solid var(--brand-silver-line);
-  background: linear-gradient(180deg, #fff 0%, #f4f7fa 100%);
 }
 
 .site-landing .services-section-intro {
