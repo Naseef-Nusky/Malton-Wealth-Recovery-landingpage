@@ -6,8 +6,6 @@ import './App.css'
 const PHONE_DISPLAY = '0800 123 4567'
 const PHONE_HREF = 'tel:08001234567'
 
-const HERO_BENEFIT_TICK_PLATE_FILL = 'hero-benefit-tick-plate-sheen'
-
 const SERVICES = [
   {
     iconId: 'investment',
@@ -187,7 +185,7 @@ function HeroBenefitTick() {
   return (
     <span className="hero-benefit-tick" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" className="hero-benefit-tick-icon">
-        <circle className="hero-benefit-tick-plate" cx="12" cy="12" r="10.25" fill={`url(#${HERO_BENEFIT_TICK_PLATE_FILL})`} />
+        <circle className="hero-benefit-tick-plate" cx="12" cy="12" r="10.25" />
         <circle className="hero-benefit-tick-ring" cx="12" cy="12" r="10.25" strokeWidth="1.2" />
         <path
           className="hero-benefit-tick-mark"
@@ -298,7 +296,7 @@ function ContactForm({ onSubmitted, headingId, layout = 'page' }) {
 function ThankYouView({ onBack }) {
   return (
     <div className="site-landing thank-you-bg flex min-h-svh flex-col items-center justify-center px-4 py-16">
-      <img src={logoImg} alt="Malton Wealth Recovery" className="mb-8 h-14 w-auto object-contain opacity-95" />
+      <img src={logoImg} alt="Malton Wealth Recovery" className="mb-8 h-[4.75rem] w-auto object-contain opacity-95 sm:h-20" />
       <div className="thank-you-card max-w-lg rounded-2xl border border-slate-200 bg-white p-10 shadow-xl">
         <h1 className="heading-thanks mb-4 text-center">
           Thank you for your submission.
@@ -326,6 +324,7 @@ function App() {
   const [openFaq, setOpenFaq] = useState(0)
 
   const formHeadingId = useId()
+  const claimFormHeadingId = useId()
   const modalTitleId = useId()
 
   const openForm = useCallback(() => setModalOpen(true), [])
@@ -363,7 +362,7 @@ function App() {
       <header className="bg-brand-header sticky top-0 z-40 border-b border-slate-200 shadow-sm shadow-slate-900/8">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 sm:py-3.5">
           <a href="#" className="inline-flex shrink-0" aria-label="Malton Wealth Recovery — home">
-            <img src={logoImg} alt="" className="h-10 w-auto object-contain sm:h-11" />
+            <img src={logoImg} alt="" className="h-[3.25rem] w-auto object-contain sm:h-16" />
           </a>
           <a
             href={PHONE_HREF}
@@ -379,28 +378,21 @@ function App() {
         className="hero-section flex min-h-[min(88dvh,56rem)] flex-col justify-center px-4 py-12 text-white sm:px-6 sm:py-14 lg:py-16"
         style={{ '--hero-bg-image': `url(${heroBg})` }}
       >
-        <svg
-          className="pointer-events-none absolute left-0 top-0 h-0 w-0 overflow-hidden opacity-0"
-          aria-hidden="true"
-          focusable="false"
-        >
-          <defs>
-            <radialGradient id={HERO_BENEFIT_TICK_PLATE_FILL} cx="28%" cy="18%" fx="28%" fy="18%" r="92%">
-              <stop offset="0%" stopColor="rgb(255 255 255)" stopOpacity="0.28" />
-              <stop offset="42%" stopColor="rgb(255 255 255)" stopOpacity="0.1" />
-              <stop offset="100%" stopColor="rgb(201 212 223)" stopOpacity="0.06" />
-            </radialGradient>
-          </defs>
-        </svg>
         <div className="hero-section-content mx-auto grid w-full max-w-6xl gap-12 lg:grid-cols-2 lg:items-center lg:gap-14">
           <div className="w-full max-w-xl text-left">
-            <h1 className="hero-heading mb-4">
-              Have you lost £5,000 or more to a scam or fraud?
+            <h1 className="hero-heading hero-heading-stack mb-0">
+              <span className="hero-heading-first-line">
+                Have you lost <span className="hero-accent-amount">£5,000</span>
+              </span>
+              <span className="hero-heading-line hero-heading-line-2">or more to a scam</span>
+              <span className="hero-heading-line hero-heading-line-3">or fraud?</span>
             </h1>
-            <p className="text-hero-muted mb-8 max-w-xl text-lg sm:text-xl">
-              Recover what is rightfully yours with expert support.
-            </p>
-            <ul className="hero-benefits mb-8 flex max-w-xl flex-col gap-3.5 text-left text-base sm:gap-4 sm:text-lg">
+            <div className="hero-lead-wrap max-w-xl py-6 sm:py-8 lg:py-10">
+              <p className="text-hero-muted hero-lead-copy m-0 text-lg leading-relaxed sm:text-xl">
+                Recover what is rightfully yours with expert support.
+              </p>
+            </div>
+            <ul className="hero-benefits mb-9 flex max-w-xl flex-col gap-4 text-left text-base leading-snug sm:mb-10 sm:gap-[1.15rem] sm:text-lg">
               <li className="flex items-start gap-3">
                 <HeroBenefitTick />
                 <span className="text-hero-muted min-w-0 pt-px sm:text-balance">
@@ -420,18 +412,12 @@ function App() {
                 </span>
               </li>
             </ul>
-            <div className="flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-              <a
-                href="#lead-form"
-                className="btn-brand inline-flex justify-center rounded-lg px-8 py-3 text-center text-base font-semibold text-white shadow-lg shadow-black/25 transition max-sm:w-full"
-              >
-                Check your eligibility
-              </a>
+            <div className="hero-cta-group">
               <a
                 href={PHONE_HREF}
-                className="btn-brand-outline inline-flex items-center justify-center gap-2 rounded-lg px-8 py-3 text-center text-base font-semibold transition max-sm:w-full"
+                className="hero-call-outline inline-flex max-w-full items-center justify-center gap-2 rounded-lg px-8 py-[0.6875rem] text-center text-base font-semibold transition max-sm:w-full"
               >
-                <PhoneCallIcon className="h-[1.125em] w-[1.125em] shrink-0 opacity-95" />
+                <PhoneCallIcon className="h-[1.125em] w-[1.125em] shrink-0 text-current" />
                 Call now
               </a>
             </div>
@@ -443,51 +429,35 @@ function App() {
       </section>
 
       <section id="about" className="scroll-mt-28 px-4 py-16 sm:px-6 lg:py-20">
-        <div className="about-section-inner mx-auto max-w-3xl text-center text-balance">
-          <p className="text-brand-muted heading-eyebrow mb-3 uppercase">Who we are</p>
-          <h2 className="text-brand heading-section mb-6">About Us</h2>
-          <p className="mb-4 leading-relaxed text-lg text-slate-600">
+        <div className="about-section-inner mx-auto max-w-3xl text-balance">
+          <h2 className="text-brand heading-section mb-6 text-center">About Us</h2>
+          <p className="about-section-body mb-4 leading-relaxed text-lg text-slate-600">
             With over 15 years of combined experience in fraud recovery, we support individuals across the UK who
             have lost significant sums to scams, including investment scams, cryptocurrency fraud, and online
             financial deception.
           </p>
-          <p className="leading-relaxed text-lg text-slate-600">
+          <p className="about-section-body leading-relaxed text-lg text-slate-600">
             We understand how complex and distressing it can be to lose money to a scam. That is why our approach
-            focuses on discretion, professionalism, and helping you understand your options for recovering money lost
-            to fraud.
+            focuses on discretion, professionalism, and helping you understand your options for recovering money lost to
+            fraud.
           </p>
         </div>
       </section>
 
       <section id="services" className="section-muted scroll-mt-28 px-4 py-16 sm:px-6 lg:py-20">
         <div className="mx-auto max-w-6xl">
-          <h2 className="text-brand heading-section mb-4 text-center">Our Services</h2>
-          <div className="mb-12 flex w-full justify-center lg:mb-14">
-            <p className="services-section-intro w-full max-w-2xl px-4 text-lg leading-relaxed text-slate-600 sm:text-pretty md:max-w-[44rem]">
-              Each case is handled with discretion, with a focus on helping you understand your options and the next steps
-              available.
-            </p>
-          </div>
+          <h2 className="text-brand heading-section mb-10 text-center sm:mb-12 lg:mb-14">Our Services</h2>
           <div className="grid gap-8 sm:grid-cols-2 lg:gap-10">
             {SERVICES.map((svc) => (
               <article
                 key={svc.title}
                 className="service-card-top service-card flex h-full flex-col rounded-2xl p-7 sm:p-8"
               >
-                <div className="service-card-title-row mb-4 flex items-start gap-3">
+                <div className="service-card-title-row mb-4 flex w-full items-center gap-3">
                   <ServiceCardIconDecor iconId={svc.iconId} />
                   <h3 className="text-brand heading-card min-w-0 flex-1">{svc.title}</h3>
                 </div>
                 <p className="mb-0 flex-1 text-base leading-relaxed text-slate-600 sm:text-[1.05rem]">{svc.body}</p>
-                <div className="mt-5 shrink-0 pt-1 sm:mt-6">
-                  <button
-                    type="button"
-                    onClick={openForm}
-                    className="service-card-cta btn-brand w-full rounded-lg px-6 py-3.5 text-center text-sm font-semibold text-white shadow-md sm:text-base"
-                  >
-                    Start Your Claim Today
-                  </button>
-                </div>
               </article>
             ))}
           </div>
@@ -546,7 +516,6 @@ function App() {
 
       <section id="faq" className="faq-section scroll-mt-28 px-4 py-16 sm:px-6 lg:pb-24 lg:pt-16">
         <div className="mx-auto max-w-3xl">
-          <p className="text-brand-muted heading-eyebrow mb-3 text-center uppercase">Got questions?</p>
           <h2 className="text-brand heading-section mb-12 text-center">
             Frequently Asked Questions
           </h2>
@@ -574,22 +543,19 @@ function App() {
               </li>
             ))}
           </ul>
-          <div className="mt-14 flex justify-center">
-            <button
-              type="button"
-              onClick={openForm}
-              className="btn-brand rounded-xl px-12 py-4 text-lg font-bold text-white shadow-lg transition"
-            >
-              Start your claim today
-            </button>
-          </div>
+        </div>
+      </section>
+
+      <section id="claim-form" className="section-muted scroll-mt-28 px-4 py-16 sm:px-6 lg:py-20">
+        <div className="mx-auto max-w-xl">
+          <ContactForm onSubmitted={handleSubmitted} headingId={claimFormHeadingId} layout="page" />
         </div>
       </section>
 
       <footer className="bg-brand-header border-t border-slate-200 px-4 py-12 sm:px-6">
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 md:flex-row md:items-start md:justify-between">
           <div className="text-center md:text-left">
-            <img src={logoImg} alt="" className="mx-auto mb-4 h-10 w-auto object-contain md:mx-0" />
+            <img src={logoImg} alt="" className="mx-auto mb-4 h-[3.25rem] w-auto object-contain sm:h-16 md:mx-0" />
             <p className="max-w-xs text-sm text-slate-600">
               Fraud recovery support for victims across the United Kingdom.
             </p>
