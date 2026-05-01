@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useId, useState } from 'react'
-import logoImg from './assets/logo.jpeg'
+import logoImg from './assets/logo.png'
 import heroBg from './assets/hero.jpeg'
 import './App.css'
 
@@ -7,13 +7,6 @@ const PHONE_DISPLAY = '0800 123 4567'
 const PHONE_HREF = 'tel:08001234567'
 
 const HERO_BENEFIT_TICK_PLATE_FILL = 'hero-benefit-tick-plate-sheen'
-
-const NAV_ITEMS = [
-  { href: '#about', label: 'About' },
-  { href: '#services', label: 'Services' },
-  { href: '#steps', label: 'How it works' },
-  { href: '#faq', label: 'FAQ' },
-]
 
 const TRUST_STATS = [
   { value: '15+ years', label: 'Combined fraud recovery experience' },
@@ -24,18 +17,22 @@ const TRUST_STATS = [
 
 const SERVICES = [
   {
+    iconId: 'investment',
     title: 'Investment Scam Recovery',
     body: 'Lost money to a fraudulent investment opportunity? We assess your case and help you explore potential routes to recover funds lost through investment scams.',
   },
   {
+    iconId: 'trading',
     title: 'Trading and Forex Scam Recovery',
     body: 'Trading scams can lead to significant losses. We guide you through your situation and outline the steps that may be available to recover your funds.',
   },
   {
+    iconId: 'pushPayment',
     title: 'Push Payment Fraud',
     body: 'If you were persuaded to transfer money by someone posing as a trusted source, we analyse your case and help identify ways to challenge the transaction.',
   },
   {
+    iconId: 'romance',
     title: 'Romance Scam Recovery',
     body: 'If you have been manipulated into sending money through an online relationship, we provide discreet guidance to help you explore your options.',
   },
@@ -84,7 +81,7 @@ const SCAM_OPTIONS = [
 function CloseIconMono() {
   return (
     <svg
-      className="pointer-events-none h-6 w-6 shrink-0"
+      className="pointer-events-none h-[1.125rem] w-[1.125rem] shrink-0"
       aria-hidden="true"
       fill="none"
       viewBox="0 0 24 24"
@@ -94,6 +91,102 @@ function CloseIconMono() {
     >
       <path d="M18 6L6 18M6 6l12 12" />
     </svg>
+  )
+}
+
+function PhoneCallIcon({ className }) {
+  return (
+    <svg
+      className={className}
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+    </svg>
+  )
+}
+
+function ServiceIconInvestment({ className }) {
+  return (
+    <svg className={className} aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.65"
+        d="m3 16 6-6 4 4 8-8"
+      />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.65" d="M14 6h7v7" />
+    </svg>
+  )
+}
+
+function ServiceIconTrading({ className }) {
+  return (
+    <svg className={className} aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path strokeLinecap="round" strokeWidth="1.65" d="M4 20V4" />
+      <path strokeLinecap="round" strokeWidth="1.65" d="M20 20H4" />
+      <path strokeLinecap="round" strokeWidth="1.65" d="M8 16V10" />
+      <path strokeLinecap="round" strokeWidth="1.65" d="M12 16V8" />
+      <path strokeLinecap="round" strokeWidth="1.65" d="M16 16V12" />
+    </svg>
+  )
+}
+
+function ServiceIconPushPayment({ className }) {
+  return (
+    <svg className={className} aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <rect
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.65"
+        x="4"
+        y="5"
+        width="16"
+        height="13"
+        rx="2"
+      />
+      <path strokeLinecap="round" strokeWidth="1.65" d="M4 11h16" />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.65"
+        d="m12 17 2-2.5H10L12 17Z"
+      />
+    </svg>
+  )
+}
+
+function ServiceIconRomance({ className }) {
+  return (
+    <svg className={className} aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.65"
+        d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 016.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 010-6.364z"
+      />
+    </svg>
+  )
+}
+
+const SERVICE_ICON_BY_ID = {
+  investment: ServiceIconInvestment,
+  trading: ServiceIconTrading,
+  pushPayment: ServiceIconPushPayment,
+  romance: ServiceIconRomance,
+}
+
+function ServiceCardIconDecor({ iconId }) {
+  const Icon = SERVICE_ICON_BY_ID[iconId] ?? ServiceIconInvestment
+  return (
+    <div className="service-card-icon-shell" aria-hidden="true">
+      <Icon className="service-card-icon-svg" />
+    </div>
   )
 }
 
@@ -237,7 +330,7 @@ function ThankYouView({ onBack }) {
 function App() {
   const [submitted, setSubmitted] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
-  const [openFaq, setOpenFaq] = useState(null)
+  const [openFaq, setOpenFaq] = useState(0)
 
   const formHeadingId = useId()
   const modalTitleId = useId()
@@ -274,33 +367,16 @@ function App() {
 
   return (
     <div className="site-landing min-h-svh bg-white text-left text-slate-700 antialiased">
-      <header className="bg-brand-header sticky top-0 z-40 border-b border-white/10 shadow-lg shadow-slate-900/35">
-        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-6 sm:py-3.5">
-          <div className="flex items-center justify-between gap-4 sm:contents">
-            <a href="#" className="inline-flex shrink-0" aria-label="Malton Wealth Recovery — home">
-              <img src={logoImg} alt="" className="h-10 w-auto object-contain sm:h-11" />
-            </a>
-            <a
-              href={PHONE_HREF}
-              className="rounded-lg border-2 border-white/45 bg-white/10 px-3 py-2 text-sm font-semibold text-white transition hover:bg-white/20 sm:hidden"
-            >
-              {PHONE_DISPLAY}
-            </a>
-          </div>
-          <nav
-            className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 border-t border-white/10 pt-3 sm:flex-1 sm:border-t-0 sm:pt-0"
-            aria-label="Page sections"
-          >
-            {NAV_ITEMS.map((item) => (
-              <a key={item.href} href={item.href} className="nav-link">
-                {item.label}
-              </a>
-            ))}
-          </nav>
+      <header className="bg-brand-header sticky top-0 z-40 border-b border-slate-200 shadow-sm shadow-slate-900/8">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 sm:py-3.5">
+          <a href="#" className="inline-flex shrink-0" aria-label="Malton Wealth Recovery — home">
+            <img src={logoImg} alt="" className="h-10 w-auto object-contain sm:h-11" />
+          </a>
           <a
             href={PHONE_HREF}
-            className="hidden rounded-lg border-2 border-white/45 bg-white/10 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/20 sm:inline-flex sm:shrink-0 sm:text-base"
+            className="header-phone-cta inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border-2 px-3 py-2 text-sm font-semibold transition sm:px-4 sm:text-base"
           >
+            <PhoneCallIcon className="h-[1.125em] w-[1.125em] shrink-0" />
             {PHONE_DISPLAY}
           </a>
         </div>
@@ -358,7 +434,11 @@ function App() {
               >
                 Check your eligibility
               </a>
-              <a href={PHONE_HREF} className="btn-brand-outline inline-flex rounded-lg px-6 py-3 text-base font-semibold transition">
+              <a
+                href={PHONE_HREF}
+                className="btn-brand-outline inline-flex items-center gap-2 rounded-lg px-6 py-3 text-base font-semibold transition"
+              >
+                <PhoneCallIcon className="h-[1.125em] w-[1.125em] shrink-0 opacity-95" />
                 Call now
               </a>
             </div>
@@ -414,7 +494,10 @@ function App() {
                 key={svc.title}
                 className="service-card-top service-card flex h-full flex-col rounded-2xl p-7 sm:p-8"
               >
-                <h3 className="text-brand heading-card mb-4">{svc.title}</h3>
+                <div className="service-card-title-row mb-4 flex items-start gap-3">
+                  <ServiceCardIconDecor iconId={svc.iconId} />
+                  <h3 className="text-brand heading-card min-w-0 flex-1">{svc.title}</h3>
+                </div>
                 <p className="mb-0 flex-1 text-base leading-relaxed text-slate-600 sm:text-[1.05rem]">{svc.body}</p>
                 <div className="mt-5 shrink-0 pt-1 sm:mt-6">
                   <button
@@ -523,25 +606,26 @@ function App() {
         </div>
       </section>
 
-      <footer className="bg-brand-header px-4 py-12 text-slate-300 sm:px-6">
+      <footer className="bg-brand-header border-t border-slate-200 px-4 py-12 sm:px-6">
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 md:flex-row md:items-start md:justify-between">
           <div className="text-center md:text-left">
-            <img src={logoImg} alt="" className="mx-auto mb-4 h-10 w-auto opacity-95 md:mx-0" />
-            <p className="max-w-xs text-sm text-slate-400">
+            <img src={logoImg} alt="" className="mx-auto mb-4 h-10 w-auto object-contain md:mx-0" />
+            <p className="max-w-xs text-sm text-slate-600">
               Fraud recovery support for victims across the United Kingdom.
             </p>
           </div>
           <nav className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm font-medium" aria-label="Footer">
-            <a href="#about" className="text-white hover:underline">
+            <a href="#about" className="footer-site-link">
               About
             </a>
-            <a href="#services" className="text-white hover:underline">
+            <a href="#services" className="footer-site-link">
               Services
             </a>
-            <a href="#faq" className="text-white hover:underline">
+            <a href="#faq" className="footer-site-link">
               FAQ
             </a>
-            <a href={PHONE_HREF} className="text-white hover:underline">
+            <a href={PHONE_HREF} className="footer-site-link inline-flex items-center gap-1.5">
+              <PhoneCallIcon className="h-4 w-4 shrink-0" />
               {PHONE_DISPLAY}
             </a>
           </nav>
@@ -551,13 +635,7 @@ function App() {
       {modalOpen && (
         <div
           role="presentation"
-          className="modal-root fixed inset-0 z-50 flex items-end justify-center sm:items-center"
-          style={{
-            paddingTop: 'max(0.75rem, env(safe-area-inset-top))',
-            paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom))',
-            paddingLeft: 'max(0.75rem, env(safe-area-inset-left))',
-            paddingRight: 'max(0.75rem, env(safe-area-inset-right))',
-          }}
+          className="modal-root fixed inset-0 z-50 flex min-h-0 flex-col pt-[max(0.625rem,env(safe-area-inset-top))] pb-[max(0.625rem,env(safe-area-inset-bottom))] pl-[max(0.625rem,env(safe-area-inset-left))] pr-[max(0.625rem,env(safe-area-inset-right))] sm:items-center sm:justify-center sm:p-4"
         >
           <button
             type="button"
@@ -570,7 +648,7 @@ function App() {
             aria-modal="true"
             aria-labelledby={`${modalTitleId}-h`}
             tabIndex={-1}
-            className="modal-panel modal-dialog-sheet relative z-10 flex max-h-[min(90dvh,720px)] w-full max-w-[min(100%,32rem)] flex-col overflow-hidden rounded-t-[1.25rem] border border-slate-200/90 bg-white shadow-2xl sm:max-h-[min(92dvh,840px)] sm:rounded-[1rem]"
+            className="modal-panel modal-dialog-sheet relative z-10 flex min-h-0 w-full flex-1 flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-xl sm:max-h-[min(92dvh,840px)] sm:max-w-[min(100%,32rem)] sm:flex-none sm:shadow-2xl"
           >
             <header className="modal-dialog-toolbar flex shrink-0 items-center justify-end border-b border-slate-200/90 bg-white px-4 py-3 sm:px-5 sm:py-3.5">
               <button

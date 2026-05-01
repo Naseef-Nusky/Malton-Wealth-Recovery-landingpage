@@ -16,6 +16,9 @@
   --brand-silver-line: #c5ccd4;
   --brand-silver-muted: #8a9aa8;
   --brand-surface: #eef1f5;
+  /* Slightly darker than white — header / footer chrome */
+  --brand-chrome: #e8eef3;
+  --brand-chrome-soft: #eff3f7;
 }
 
 /* ─── Professional headline system (Lexend) ─── */
@@ -375,16 +378,25 @@
   border: 0;
 }
 
-.nav-link {
-  color: rgb(255 255 255 / 0.88);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.875rem;
-  transition: color 0.15s ease;
+.site-landing header .header-phone-cta {
+  border-color: rgb(5 28 44 / 0.35);
+  color: var(--brand-navy);
+  background-color: rgb(255 255 255 / 0.85);
 }
 
-.nav-link:hover {
-  color: #fff;
+.site-landing header .header-phone-cta:hover {
+  border-color: var(--brand-navy);
+  background-color: var(--brand-surface);
+}
+
+.site-landing footer .footer-site-link {
+  color: var(--brand-navy);
+  text-decoration: none;
+}
+
+.site-landing footer .footer-site-link:hover {
+  text-decoration: underline;
+  color: var(--brand-navy-hover);
 }
 
 .stat-card {
@@ -415,6 +427,25 @@
 
 .service-card-top {
   border-top: 4px solid var(--brand-navy);
+}
+
+.service-card-icon-shell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  flex-shrink: 0;
+  border-radius: 0.875rem;
+  background: rgb(5 28 44 / 0.08);
+  color: var(--brand-navy);
+  border: 1px solid rgb(5 28 44 / 0.1);
+}
+
+.service-card-icon-svg {
+  width: 1.625rem;
+  height: 1.625rem;
+  flex-shrink: 0;
 }
 
 .step-card {
@@ -504,7 +535,12 @@
 }
 
 .bg-brand-header {
-  background-color: var(--brand-navy);
+  /* Soft slate tint: enough contrast for logo, not as heavy as navy */
+  background: linear-gradient(180deg, var(--brand-chrome) 0%, var(--brand-chrome-soft) 100%);
+}
+
+.site-landing footer.bg-brand-header {
+  background: linear-gradient(180deg, #e2e9f0 0%, var(--brand-chrome) 40%, var(--brand-chrome-soft) 100%);
 }
 
 .border-brand-line {
@@ -520,10 +556,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 2.75rem;
-  min-height: 2.75rem;
-  width: 2.75rem;
-  height: 2.75rem;
+  min-width: 2.125rem;
+  min-height: 2.125rem;
+  width: 2.125rem;
+  height: 2.125rem;
   padding: 0;
   margin: 0;
   cursor: pointer;
