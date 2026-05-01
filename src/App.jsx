@@ -27,6 +27,11 @@ const SERVICES = [
     title: 'Romance Scam Recovery',
     body: 'If you have been manipulated into sending money through an online relationship, we provide discreet guidance to help you explore your options.',
   },
+  {
+    iconId: 'otherCases',
+    title: 'Something We Haven’t Mentioned?',
+    body: 'Financial fraud can take many forms, and not every situation fits into a defined category. If your circumstances are not listed above, it does not mean that there are no options available. If you have lost £5,000 or more to a potential scam, we can help you understand your position and take the first steps to help you recover your funds.',
+  },
 ]
 
 const FAQS = [
@@ -165,11 +170,31 @@ function ServiceIconRomance({ className }) {
   )
 }
 
+function ServiceIconOtherCases({ className }) {
+  return (
+    <svg className={className} aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.65"
+        d="M12.83 2.18a2 2 0 00-1.66 0L2.6 6.08a1 1 0 000 1.84l8.57 3.91a2 2 0 001.66 0l8.57-3.9a1 1 0 000-1.84L12.83 2.18z"
+      />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.65"
+        d="M2 12.5l9.07 4.14a2 2 0 001.86 0L22 12.5M2 17.5l9.07 4.14a2 2 0 001.86 0L22 17.5"
+      />
+    </svg>
+  )
+}
+
 const SERVICE_ICON_BY_ID = {
   investment: ServiceIconInvestment,
   trading: ServiceIconTrading,
   pushPayment: ServiceIconPushPayment,
   romance: ServiceIconRomance,
+  otherCases: ServiceIconOtherCases,
 }
 
 function ServiceCardIconDecor({ iconId }) {
@@ -219,7 +244,7 @@ function ContactForm({ onSubmitted, headingId, layout = 'page' }) {
       aria-labelledby={headingId}
     >
       <h2 id={headingId} className="heading-form mb-6 text-center">
-        Check your eligibility for a free,
+        Check your eligibility for a <span className="form-heading-accent">FREE</span>,
         <br />
         confidential consultation
       </h2>
@@ -448,18 +473,35 @@ function App() {
         <div className="mx-auto max-w-6xl">
           <h2 className="text-brand heading-section mb-10 text-center sm:mb-12 lg:mb-14">Our Services</h2>
           <div className="grid gap-8 sm:grid-cols-2 lg:gap-10">
-            {SERVICES.map((svc) => (
+            {SERVICES.map((svc, i) => {
+              const centerLastOnLg =
+                SERVICES.length % 2 === 1 && i === SERVICES.length - 1
+              return (
               <article
                 key={svc.title}
-                className="service-card-top service-card flex h-full flex-col rounded-2xl p-7 sm:p-8"
+                className={`service-card-top service-card flex h-full flex-col rounded-2xl p-7 sm:p-8${
+                  centerLastOnLg
+                    ? ' lg:col-span-2 lg:justify-self-center lg:w-[calc((100%-2.5rem)/2)]'
+                    : ''
+                }`}
               >
                 <div className="service-card-title-row mb-4 flex w-full items-center gap-3">
                   <ServiceCardIconDecor iconId={svc.iconId} />
                   <h3 className="text-brand heading-card min-w-0 flex-1">{svc.title}</h3>
                 </div>
                 <p className="mb-0 flex-1 text-base leading-relaxed text-slate-600 sm:text-[1.05rem]">{svc.body}</p>
+                <div className="mt-5 shrink-0 pt-1 sm:mt-6">
+                  <button
+                    type="button"
+                    onClick={openForm}
+                    className="service-card-cta btn-brand w-full rounded-lg px-6 py-3.5 text-center text-sm font-semibold text-white shadow-md sm:text-base"
+                  >
+                    Start Your Claim Today
+                  </button>
+                </div>
               </article>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
@@ -506,7 +548,7 @@ function App() {
             <button
               type="button"
               onClick={openForm}
-              className="btn-brand rounded-lg px-10 py-3.5 text-lg font-semibold text-white shadow-lg transition"
+              className="btn-brand rounded-lg px-10 py-3.5 text-lg font-semibold text-white shadow-md transition"
             >
               Check your eligibility now
             </button>

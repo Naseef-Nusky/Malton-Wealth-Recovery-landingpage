@@ -19,6 +19,8 @@
   /* Slightly darker than white — header / footer chrome */
   --brand-chrome: #e8eef3;
   --brand-chrome-soft: #eff3f7;
+  /* Matches hero CTA / £5k accent */
+  --brand-accent-green: #4ade80;
 }
 
 /* ─── Professional headline system (Lexend) ─── */
@@ -51,9 +53,9 @@
   font-weight: 600;
 }
 
-/* Hero headline */
+/* Hero headline — mobile-first sizing (slightly above previous default floor) */
 .site-landing .hero-heading {
-  font-size: clamp(1.875rem, 3.5vw + 1.05rem, 3rem);
+  font-size: clamp(2.0625rem, 4.25vw + 1rem, 3rem);
   font-weight: 700;
 }
 
@@ -280,9 +282,9 @@
 }
 
 .site-landing .hero-section .hero-call-outline:hover {
-  background: rgb(var(--hero-accent-rgb, 74 222 128) / 0.12);
-  color: #bbf7d0;
-  border-color: #bbf7d0;
+  background: rgb(var(--hero-accent-rgb, 74 222 128) / 0.16);
+  color: #fff;
+  border-color: var(--brand-accent-green);
 }
 
 .site-landing .hero-section .hero-call-outline:active {
@@ -317,8 +319,8 @@
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  /* Accent green — £5k, ticks, Call now (aligned with mock) */
-  --hero-accent: #4ade80;
+  /* Accent green — £5k, ticks, Call now */
+  --hero-accent: var(--brand-accent-green);
   --hero-accent-rgb: 74 222 128;
 }
 
@@ -470,6 +472,12 @@
   text-wrap: pretty;
 }
 
+.site-landing .contact-form-card .form-heading-accent,
+.site-landing .modal-form-inner .form-heading-accent {
+  color: var(--brand-accent-green);
+  font-weight: 700;
+}
+
 .service-card {
   border: 1px solid rgb(197 204 212 / 0.85);
   background: #fff;
@@ -548,6 +556,38 @@
 
 .btn-brand-outline:hover {
   background: rgb(255 255 255 / 0.1);
+}
+
+.site-landing button.service-card-cta {
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+  appearance: none;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.12s ease;
+}
+
+.site-landing button.service-card-cta:hover {
+  box-shadow: 0 4px 14px rgb(5 28 44 / 0.22);
+}
+
+.site-landing button.service-card-cta:active {
+  transform: scale(0.99);
+}
+
+.site-landing button.service-card-cta:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px #fff,
+    0 0 0 4px var(--brand-navy);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-landing button.service-card-cta:active {
+    transform: none;
+  }
 }
 
 .section-muted {
