@@ -420,16 +420,16 @@ function App() {
                 </span>
               </li>
             </ul>
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <a
                 href="#lead-form"
-                className="btn-brand inline-flex rounded-lg px-8 py-3 text-base font-semibold text-white shadow-lg shadow-black/25 transition"
+                className="btn-brand inline-flex justify-center rounded-lg px-8 py-3 text-center text-base font-semibold text-white shadow-lg shadow-black/25 transition max-sm:w-full"
               >
                 Check your eligibility
               </a>
               <a
                 href={PHONE_HREF}
-                className="btn-brand-outline inline-flex items-center gap-2 rounded-lg px-6 py-3 text-base font-semibold transition"
+                className="btn-brand-outline inline-flex items-center justify-center gap-2 rounded-lg px-8 py-3 text-center text-base font-semibold transition max-sm:w-full"
               >
                 <PhoneCallIcon className="h-[1.125em] w-[1.125em] shrink-0 opacity-95" />
                 Call now
