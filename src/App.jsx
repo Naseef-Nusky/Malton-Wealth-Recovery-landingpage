@@ -318,7 +318,7 @@ function ContactForm({ onSubmitted, headingId, layout = 'page' }) {
   )
 }
 
-function ThankYouView({ onBack }) {
+function ThankYouView() {
   return (
     <div className="site-landing thank-you-bg flex min-h-svh flex-col items-center justify-center px-4 py-16">
       <img src={logoImg} alt="Malton Wealth Recovery" className="mb-8 h-24 w-auto object-contain opacity-95 sm:h-28" />
@@ -326,18 +326,9 @@ function ThankYouView({ onBack }) {
         <h1 className="heading-thanks mb-4 text-center">
           Thank you for your submission.
         </h1>
-        <p className="mb-8 text-center text-lg">
+        <p className="mb-0 text-center text-lg">
           One of our experts will be in contact shortly.
         </p>
-        <div className="flex justify-center">
-          <button
-            type="button"
-            onClick={onBack}
-            className="btn-brand rounded-lg px-8 py-3 font-semibold text-white shadow-md transition"
-          >
-            Back to website
-          </button>
-        </div>
       </div>
     </div>
   )
@@ -379,7 +370,7 @@ function App() {
   }
 
   if (submitted) {
-    return <ThankYouView onBack={() => setSubmitted(false)} />
+    return <ThankYouView />
   }
 
   return (
