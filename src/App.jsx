@@ -296,7 +296,7 @@ function ContactForm({ onSubmitted, headingId, layout = 'page' }) {
 function ThankYouView({ onBack }) {
   return (
     <div className="site-landing thank-you-bg flex min-h-svh flex-col items-center justify-center px-4 py-16">
-      <img src={logoImg} alt="Malton Wealth Recovery" className="mb-8 h-[4.75rem] w-auto object-contain opacity-95 sm:h-20" />
+      <img src={logoImg} alt="Malton Wealth Recovery" className="mb-8 h-24 w-auto object-contain opacity-95 sm:h-28" />
       <div className="thank-you-card max-w-lg rounded-2xl border border-slate-200 bg-white p-10 shadow-xl">
         <h1 className="heading-thanks mb-4 text-center">
           Thank you for your submission.
@@ -362,7 +362,7 @@ function App() {
       <header className="bg-brand-header sticky top-0 z-40 border-b border-slate-200 shadow-sm shadow-slate-900/8">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 sm:py-3.5">
           <a href="#" className="inline-flex shrink-0" aria-label="Malton Wealth Recovery — home">
-            <img src={logoImg} alt="" className="h-[3.25rem] w-auto object-contain sm:h-16" />
+            <img src={logoImg} alt="" className="h-[4rem] w-auto object-contain sm:h-20" />
           </a>
           <a
             href={PHONE_HREF}
@@ -555,7 +555,7 @@ function App() {
       <footer className="bg-brand-header border-t border-slate-200 px-4 py-12 sm:px-6">
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 md:flex-row md:items-start md:justify-between">
           <div className="text-center md:text-left">
-            <img src={logoImg} alt="" className="mx-auto mb-4 h-[3.25rem] w-auto object-contain sm:h-16 md:mx-0" />
+            <img src={logoImg} alt="" className="mx-auto mb-4 h-[4rem] w-auto object-contain sm:h-20 md:mx-0" />
             <p className="max-w-xs text-sm text-slate-600">
               Fraud recovery support for victims across the United Kingdom.
             </p>

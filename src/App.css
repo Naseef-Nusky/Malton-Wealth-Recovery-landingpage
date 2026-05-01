@@ -459,13 +459,15 @@
   text-wrap: balance;
 }
 
-/* About — justified + centred last line (all viewports) */
+/* About — title centred; body normal alignment (no justify) */
+.site-landing .about-section-inner h2 {
+  text-align: center;
+  text-wrap: balance;
+}
+
 .site-landing .about-section-inner .about-section-body {
-  text-align: justify;
-  text-align-last: center;
+  text-align: center;
   text-wrap: pretty;
-  hyphens: auto;
-  -webkit-hyphens: auto;
 }
 
 .service-card {
