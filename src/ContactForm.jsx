@@ -1,5 +1,10 @@
 import { useState } from 'react'
+import emailjs from '@emailjs/browser'
 import { CONTACT_FORM_ENDPOINT, SCAM_OPTIONS } from './constants.js'
+
+const EMAILJS_SERVICE_ID = 'service_1o99vue'
+const EMAILJS_TEMPLATE_ID = 'template_rpoe9rq'
+const EMAILJS_PUBLIC_KEY = 'eoGlKrTZChB9V6_vo'
 
 export function ContactForm({
   onSubmitted,
@@ -10,6 +15,20 @@ export function ContactForm({
   const [scamType, setScamType] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState('')
+
+  const formatEmailJsError = (err) => {
+    if (!err || typeof err !== 'object') return 'Email service error.'
+    const maybeText =
+      typeof err.text === 'string' && err.text.trim() !== '' ? err.text.trim() : ''
+    const maybeStatus =
+      typeof err.status === 'number' || typeof err.status === 'string'
+        ? String(err.status)
+        : ''
+    if (maybeText && maybeStatus) return `Email service error (${maybeStatus}): ${maybeText}`
+    if (maybeText) return `Email service error: ${maybeText}`
+    if (maybeStatus) return `Email service error (${maybeStatus}).`
+    return 'Email service error.'
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -28,30 +47,46 @@ export function ContactForm({
     }
 
     try {
-      const response = await fetch(CONTACT_FORM_ENDPOINT, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      })
+      if (typeof EMAILJS_PUBLIC_KEY === 'string' && EMAILJS_PUBLIC_KEY.trim() !== '') {
+        const templateParams = {
+          ...payload,
+          from_name: payload.fullName,
+          reply_to: payload.email,
+          phone: payload.mobile,
+        }
+        await emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          templateParams,
+          { publicKey: EMAILJS_PUBLIC_KEY }
+        )
+      } else {
+        const response = await fetch(CONTACT_FORM_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        })
 
-      const contentType = response.headers.get('content-type') || ''
-      const isJson = contentType.includes('application/json')
-      const result = isJson ? await response.json().catch(() => ({})) : {}
+        const contentType = response.headers.get('content-type') || ''
+        const isJson = contentType.includes('application/json')
+        const result = isJson ? await response.json().catch(() => ({})) : {}
 
-      if (!response.ok || !result.ok) {
-        const message =
-          typeof result.message === 'string' && result.message
-            ? result.message
-            : 'Form backend is unavailable. If you are testing locally, run the site on a PHP-enabled server.'
-        setSubmitError(message)
-        return
+        if (!response.ok || !result.ok) {
+          const message =
+            typeof result.message === 'string' && result.message
+              ? result.message
+              : 'Form backend is unavailable. If you are testing locally, run the site on a PHP-enabled server.'
+          setSubmitError(message)
+          return
+        }
       }
 
       onSubmitted()
-    } catch {
-      setSubmitError('Unable to send your enquiry right now. Please try again.')
+    } catch (err) {
+      const maybeEmailJs = formatEmailJsError(err)
+      setSubmitError(maybeEmailJs || 'Unable to send your enquiry right now. Please try again.')
     } finally {
       setIsSubmitting(false)
     }
