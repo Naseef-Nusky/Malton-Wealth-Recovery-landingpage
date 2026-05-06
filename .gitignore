@@ -9,6 +9,9 @@ lerna-debug.log*
 
 node_modules
 dist
+
+# SMTP credentials — create only on server beside contact.php (copy from smtp.config.example.php)
+public/smtp.secret.php
 dist-ssr
 *.local
 

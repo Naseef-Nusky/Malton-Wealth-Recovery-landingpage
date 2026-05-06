@@ -1,10 +1,15 @@
 import { useCallback, useEffect, useId, useState } from 'react'
 import logoImg from './assets/logo.png'
 import heroBg from './assets/hero.jpeg'
+import { ContactForm } from './ContactForm.jsx'
 import './App.css'
 
-const PHONE_DISPLAY = '0800 123 4567'
-const PHONE_HREF = 'tel:08001234567'
+const PHONE_DISPLAY = '+44 7787 071561'
+const PHONE_HREF = 'tel:+447787071561'
+
+const CONTACT_ADDRESS_LINES = ["535 King's Road", 'London SW10 0SZ']
+const EMAIL_DISPLAY = 'info@maltonwealthrecovery.com'
+const EMAIL_HREF = `mailto:${EMAIL_DISPLAY}`
 
 const SERVICES = [
   {
@@ -65,15 +70,6 @@ const FAQS = [
   },
 ]
 
-const SCAM_OPTIONS = [
-  'Investment',
-  'Cryptocurrency',
-  'Impersonation',
-  'Romance',
-  'Trading',
-  'Other',
-]
-
 function CloseIconMono() {
   return (
     <svg
@@ -103,6 +99,42 @@ function PhoneCallIcon({ className }) {
       strokeLinejoin="round"
     >
       <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+    </svg>
+  )
+}
+
+function MailIcon({ className }) {
+  return (
+    <svg
+      className={className}
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect width="20" height="16" x="2" y="4" rx="2" />
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7" />
+    </svg>
+  )
+}
+
+function MapPinIcon({ className }) {
+  return (
+    <svg
+      className={className}
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+      <circle cx="12" cy="10" r="3" />
     </svg>
   )
 }
@@ -224,100 +256,6 @@ function HeroBenefitTick() {
   )
 }
 
-function ContactForm({ onSubmitted, headingId, layout = 'page' }) {
-  const [scamType, setScamType] = useState('')
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    onSubmitted()
-  }
-
-  const formOuter =
-    layout === 'modal'
-      ? 'modal-form-inner w-full min-w-0 bg-transparent px-5 pb-10 pt-8 shadow-none sm:px-8'
-      : 'contact-form-card rounded-2xl bg-white p-6 sm:p-8'
-
-  return (
-    <form
-      className={formOuter}
-      onSubmit={handleSubmit}
-      aria-labelledby={headingId}
-    >
-      <h2 id={headingId} className="heading-form mb-6 text-center">
-        Check your eligibility for a <span className="form-heading-accent">FREE</span>,
-        <br />
-        confidential consultation
-      </h2>
-      <div className="space-y-4 text-left">
-        <label className="block">
-          <span className="mb-1 block text-sm font-medium text-slate-700">Full name</span>
-          <input
-            name="fullName"
-            type="text"
-            required
-            autoComplete="name"
-            className="input-field w-full rounded-lg border border-slate-300 px-3 py-2.5 text-slate-900"
-          />
-        </label>
-        <label className="block">
-          <span className="mb-1 block text-sm font-medium text-slate-700">Mobile number</span>
-          <input
-            name="mobile"
-            type="tel"
-            required
-            autoComplete="tel"
-            className="input-field w-full rounded-lg border border-slate-300 px-3 py-2.5 text-slate-900"
-          />
-        </label>
-        <label className="block">
-          <span className="mb-1 block text-sm font-medium text-slate-700">Email address</span>
-          <input
-            name="email"
-            type="email"
-            required
-            autoComplete="email"
-            className="input-field w-full rounded-lg border border-slate-300 px-3 py-2.5 text-slate-900"
-          />
-        </label>
-        <label className="block">
-          <span className="mb-1 block text-sm font-medium text-slate-700">Approximate amount lost</span>
-          <input
-            name="amountLost"
-            type="text"
-            required
-            className="input-field w-full rounded-lg border border-slate-300 px-3 py-2.5 text-slate-900"
-          />
-        </label>
-        <label className="block">
-          <span className="mb-1 block text-sm font-medium text-slate-700">Type of scam</span>
-          <select
-            name="scamType"
-            required
-            value={scamType}
-            onChange={(e) => setScamType(e.target.value)}
-            className={`select-modern w-full${scamType ? '' : ' select-modern-placeholder'}`}
-          >
-            <option value="">Select an option</option>
-            {SCAM_OPTIONS.map((opt) => (
-              <option key={opt} value={opt}>
-                {opt}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
-      <div className="mt-8 flex justify-center">
-        <button
-          type="submit"
-          className="btn-brand w-full rounded-lg px-10 py-3.5 text-base font-semibold text-white shadow-md transition sm:w-auto sm:min-w-[200px]"
-        >
-          Submit
-        </button>
-      </div>
-    </form>
-  )
-}
-
 function ThankYouView() {
   return (
     <div className="site-landing thank-you-bg flex min-h-svh flex-col items-center justify-center px-4 py-16">
@@ -380,13 +318,15 @@ function App() {
           <a href="#" className="inline-flex shrink-0" aria-label="Malton Wealth Recovery — home">
             <img src={logoImg} alt="" className="h-[4rem] w-auto object-contain sm:h-20" />
           </a>
-          <a
-            href={PHONE_HREF}
-            className="header-phone-cta inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border-2 px-3 py-2 text-sm font-semibold transition sm:px-4 sm:text-base"
-          >
-            <PhoneCallIcon className="h-[1.125em] w-[1.125em] shrink-0" />
-            {PHONE_DISPLAY}
-          </a>
+          <div className="flex shrink-0 flex-col items-end gap-1">
+            <a
+              href={PHONE_HREF}
+              className="header-phone-cta inline-flex items-center justify-center gap-2 rounded-lg border-2 px-3 py-2 text-sm font-semibold transition sm:px-4 sm:text-base"
+            >
+              <PhoneCallIcon className="h-[1.125em] w-[1.125em] shrink-0" />
+              {PHONE_DISPLAY}
+            </a>
+          </div>
         </div>
       </header>
 
@@ -581,19 +521,42 @@ function App() {
 
       <section id="claim-form" className="section-muted scroll-mt-28 px-4 py-16 sm:px-6 lg:py-20">
         <div className="mx-auto max-w-xl">
-          <ContactForm onSubmitted={handleSubmitted} headingId={claimFormHeadingId} layout="page" />
+          <ContactForm
+            onSubmitted={handleSubmitted}
+            headingId={claimFormHeadingId}
+            layout="page"
+            submitLabel="Start your claim today"
+          />
         </div>
       </section>
 
       <footer className="bg-brand-header border-t border-slate-200 px-4 py-12 sm:px-6">
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 md:flex-row md:items-start md:justify-between">
-          <div className="text-center md:text-left">
-            <img src={logoImg} alt="" className="mx-auto mb-4 h-[4rem] w-auto object-contain sm:h-20 md:mx-0" />
+        <div className="mx-auto flex max-w-6xl flex-col items-start gap-8 md:flex-row md:items-start md:justify-between">
+          <div className="text-left">
+            <img src={logoImg} alt="" className="mb-4 h-[4rem] w-auto object-contain sm:h-20" />
             <p className="max-w-xs text-sm text-slate-600">
               Fraud recovery support for victims across the United Kingdom.
             </p>
+            <div className="mt-4 flex flex-col items-start gap-2 text-sm text-slate-600">
+              <a href={PHONE_HREF} className="inline-flex items-center gap-2 whitespace-nowrap transition hover:text-slate-800">
+                <PhoneCallIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                {PHONE_DISPLAY}
+              </a>
+              <a href={EMAIL_HREF} className="inline-flex items-center gap-2 whitespace-nowrap font-medium transition hover:text-slate-800">
+                <MailIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                {EMAIL_DISPLAY}
+              </a>
+            </div>
+            <address className="mt-3 flex gap-2 text-sm not-italic text-slate-600">
+              <MapPinIcon className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+              <div className="space-y-0.5">
+                {CONTACT_ADDRESS_LINES.map((line) => (
+                  <div key={line}>{line}</div>
+                ))}
+              </div>
+            </address>
           </div>
-          <nav className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm font-medium" aria-label="Footer">
+          <nav className="flex flex-wrap justify-start gap-x-8 gap-y-3 text-sm font-medium" aria-label="Footer">
             <a href="#about" className="footer-site-link">
               About
             </a>
@@ -602,10 +565,6 @@ function App() {
             </a>
             <a href="#faq" className="footer-site-link">
               FAQ
-            </a>
-            <a href={PHONE_HREF} className="footer-site-link inline-flex items-center gap-1.5">
-              <PhoneCallIcon className="h-4 w-4 shrink-0" />
-              {PHONE_DISPLAY}
             </a>
           </nav>
         </div>
@@ -644,6 +603,7 @@ function App() {
                 layout="modal"
                 onSubmitted={handleSubmitted}
                 headingId={`${modalTitleId}-h`}
+                submitLabel="Start your claim today"
               />
             </div>
           </div>
